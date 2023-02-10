@@ -64,6 +64,7 @@ POSTGRES_PASSWORD=postgres # пароль для подключения к БД 
 DB_HOST=db # название сервиса (контейнера)
 DB_PORT=5432 # порт для подключения к БД
 ```
+В папке infra/ лежит пример файла .env под названием .env.example.
 Дальше проект api_yamdb будет работать с PostgreSQL.
 
 Запустите docker-compose командой ```docker-compose up```
