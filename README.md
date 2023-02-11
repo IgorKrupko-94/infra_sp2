@@ -76,9 +76,29 @@ docker-compose exec web python manage.py collectstatic --no-input
 ```
 Теперь проект доступен по адресу http://localhost/.
 
-Чтобы заполнить базу тестовой информацией:
+Команды для заполнения базы тестовой информацией:
+
+* Создать дамп (резервную копию) базы данных "fixtures.json" можно следующей командой:
 ```
-python manage.py csvindb
+docker-compose exec web python manage.py dumpdata > fixtures.json
+```
+* Далее команды по востановлению базы данных из резервной копии. Узнаем CONTAINER ID для контейнера с джанго - "infra-web-1":
+```
+docker container ls -a
+```
+* Копируем файл "fixtures.json" с фикстурами в контейнер:
+```
+docker cp fixtures.json <CONTAINER ID>:/app
+```
+* Применяем фикстуры:
+```
+docker-compose exec web python manage.py loaddata fixtures.json
+```
+Удаляем файл "fixtures.json" из контейнера:
+```
+docker exec -it <CONTAINER ID> bash
+rm fixtures.json
+exit
 ```
 
 

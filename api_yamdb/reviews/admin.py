@@ -27,7 +27,14 @@ class UserAdmin(admin.ModelAdmin):
 
 
 class TitleAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'year', 'category', 'description',)
+    list_display = (
+        'pk', 
+        'name', 
+        'year', 
+        'category', 
+        'description', 
+        'genre'
+        )
     search_fields = ('name', 'year',)
     list_filter = ('name',)
     empty_value_display = '-пусто-'
